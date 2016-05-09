@@ -1,10 +1,12 @@
 * {
   /*border: 1px solid red;*/
     box-sizing: border-box;
+  font-family: 'Varela', sans-serif;
 }
 
 body{
   text-align: center;
+
   margin: 0;
 
 }
@@ -27,12 +29,18 @@ body{
 }
 
 .column {
+  /*font-size: 0px;*/
+  /*color: #fff;*/
   cursor: pointer;
   /*background-image: url('../images/x.gif');*/
   background-size: cover;
   border: 3px solid blue;
   width: 100px;
   height: 100px;
+}
+
+.chosen{
+  background-color: green;
 }
 
 .x{
