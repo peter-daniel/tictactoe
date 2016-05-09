@@ -39,8 +39,8 @@ $('.column').on('click', function() {
       console.log(turn);
       console.log(player);
    } else {
-   console.log('this space is taken');
- }
+      console.log('this space is taken');
+   }
 });
 
 function checkDraw() {
@@ -50,75 +50,31 @@ function checkDraw() {
    }
 }
 
+
 function checkResult() {
 
    // horizontals
-   if (
-      $('#ga .1 .1').hasClass('x') &&
-      $('#ga .1 .2').hasClass('x') &&
-      $('#ga .1 .3').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .1 .1').hasClass('o') &&
-      $('#ga .1 .2').hasClass('o') &&
-      $('#ga .1 .3').hasClass('o')) {
-      console.log('O wins');
+   for (var x = 0; x <= 3; x++) {
+      for (var y = 0; y <= 3; y++) {
+         if ($('#ga .'+x+' .'+y+'').hasClass('x')) {
+            console.log('x wins');
+         } else if ($('#ga .'+x+' .'+y+'').hasClass('o')) {
+            console.log('O wins');
+         }
+      }
    }
-   if (
-      $('#ga .2 .1').hasClass('x') &&
-      $('#ga .2 .2').hasClass('x') &&
-      $('#ga .2 .3').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .2 .1').hasClass('o') &&
-      $('#ga .2 .2').hasClass('o') &&
-      $('#ga .2 .3').hasClass('o')) {
-      console.log('O wins');
-   }
-   if (
-      $('#ga .3 .1').hasClass('x') &&
-      $('#ga .3 .2').hasClass('x') &&
-      $('#ga .3 .3').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .3 .1').hasClass('o') &&
-      $('#ga .3 .2').hasClass('o') &&
-      $('#ga .3 .3').hasClass('o')) {
-      console.log('O wins');
-   }
+
    //verticals
-   if (
-      $('#ga .1 .1').hasClass('x') &&
-      $('#ga .2 .1').hasClass('x') &&
-      $('#ga .3 .1').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .1 .1').hasClass('o') &&
-      $('#ga .2 .1').hasClass('o') &&
-      $('#ga .3 .1').hasClass('o')) {
-      console.log('O wins');
-   }
-   if (
-      $('#ga .1 .2').hasClass('x') &&
-      $('#ga .2 .2').hasClass('x') &&
-      $('#ga .3 .2').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .1 .2').hasClass('o') &&
-      $('#ga .2 .2').hasClass('o') &&
-      $('#ga .3 .2').hasClass('o')) {
-      console.log('O wins');
-   }
-   if (
-      $('#ga .1 .3').hasClass('x') &&
-      $('#ga .2 .3').hasClass('x') &&
-      $('#ga .3 .3').hasClass('x')) {
-      console.log('x wins');
-   } else if (
-      $('#ga .1 .3').hasClass('o') &&
-      $('#ga .2 .3').hasClass('o') &&
-      $('#ga .3 .3').hasClass('o')) {
-      console.log('O wins');
+   for (var x = 0; x <= 3; x++) {
+      for (var y = 0; y <= 3; y++) {
+         if (
+            $('#ga .'+y+' .'+x+'').hasClass('x')) {
+            console.log('x wins');
+         } else if (
+            $('#ga .'+y+' .'+x+'').hasClass('o')) {
+            console.log('O wins');
+         }
+      }
    }
    // diagonals
    if (
@@ -143,7 +99,7 @@ function checkResult() {
       $('#ga .3 .1').hasClass('o')) {
       console.log('O wins');
    }
-}
+};
 
 
 
