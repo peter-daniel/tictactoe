@@ -1,0 +1,44 @@
+* {
+  /*border: 1px solid red;*/
+    box-sizing: border-box;
+}
+
+body{
+  text-align: center;
+  margin: 0;
+
+}
+
+#container{
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+}
+
+#gameArea{
+  /*position: relative;*/
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  height: 100px;
+}
+
+.column {
+  cursor: pointer;
+  /*background-image: url('../images/x.gif');*/
+  background-size: cover;
+  border: 3px solid blue;
+  width: 100px;
+  height: 100px;
+}
+
+.x{
+    background-image: url('../images/x.gif');
+}
+
+.o{
+    background-image: url('../images/0.gif');
+}
