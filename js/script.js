@@ -25,19 +25,22 @@ var boardArr = [1, 1, 1]
 
 
 $('.column').on('click', function() {
-   if (turn % 2 !== 0) {
-      $(this).addClass('x');
-      player = 'player2';
-
+   if (!$(this).hasClass('x') && !$(this).hasClass('o')) {
+      if (turn % 2 !== 0) {
+         $(this).addClass('x');
+         player = 'player2';
+      } else {
+         $(this).addClass('o');
+         player = 'player1';
+      }
+      turn++;
+      checkDraw()
+      checkResult()
+      console.log(turn);
+      console.log(player);
    } else {
-      $(this).addClass('o');
-      player = 'player1';
-   }
-   turn++;
-   checkDraw()
-   checkResult()
-   console.log(turn);
-   console.log(player);
+   console.log('this space is taken');
+ }
 });
 
 function checkDraw() {
@@ -54,7 +57,6 @@ function checkResult() {
       $('#ga .1 .1').hasClass('x') &&
       $('#ga .1 .2').hasClass('x') &&
       $('#ga .1 .3').hasClass('x')) {
-      $('#ga .1 .1', '#ga .1 .2').css('border', '3px solid red');
       console.log('x wins');
    } else if (
       $('#ga .1 .1').hasClass('o') &&
