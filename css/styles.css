@@ -3,6 +3,10 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
+
+*:focus{
+  display: none;
+}
 body {
     text-align: center;
     margin: 0;
@@ -44,7 +48,7 @@ p {
     font-size: 18px;
     font-weight: 400;
 }
-#player1score, #player2score {
+#player1score, #play  er2score {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
     color: white;
     margin-top: 20px;
@@ -52,6 +56,30 @@ p {
     font-weight: 600;
 }
 #ga {}
+
+#startGameBut{
+  margin: 90px 10px 0 0;
+  border: none;
+  border-radius: 20px;
+  padding: 30px 120px;
+  font-size: 33px;
+  font-weight: 600;
+  color: #555;
+  background-color: #ebebeb;
+  border: 1px solid #fff;
+  transition: all 0.2s ease;
+}
+
+#startGameBut:hover{
+  color: white;
+  background-color: #ea9e53;
+}
+
+#choice {
+  color: #666  ;
+  margin: -30px;
+  font-weight: 600;
+}
 
 .p1, .p2{
   text-align: center;
@@ -106,4 +134,3 @@ p {
 .o {
     background-image: url('../images/red.png');
 }
-button {}

@@ -7,19 +7,51 @@ var player = 'player 1';
 var gameEnd = 1;
 var player1Score, player2Score;
 var tokenChoice = '';
-var tokenColour = ''
+var tokenColour = '';
 
 
 $('#scores').hide();
 $('#container').hide();
+$('#startGameBut').hide();
 
 
+var choose1 = 0;
+var choose2 = 0;
 
-$('#chooseToken img').on('click', function(){
-  tokenChoice = (this.src);
-  $('#vs .p1 div').append('<img src=\"'+tokenChoice+'\">')
-  console.log(tokenChoice);
+$('#chooseToken div img').on('click', function() {
+   if (choose1 === 0) {
+      tokenChoice = (this.src);
+      console.log(this.src);
+      // $('#vs .p1 div').append('<img src=\"' + tokenChoice + '\">');
+      $(this).css({
+         'opacity': '1',
+         'width': '200px',
+         'height': '200px'
+      });
+      var addDiv = $('<p>').text('Player 1').attr('id', 'choice');
+      addDiv.insertAfter($(this));
+      choose1++;
+      $(this).off('click');
+
+   } else if (choose1 === 1) {
+      tokenChoice = (this.src);
+      console.log(this.src);
+      // $('#vs .p1 div').append('<img src=\"' + tokenChoice + '\">');
+      $(this).css({
+         'opacity': '1',
+         'width': '200px',
+         'height': '200px'
+      });
+      var addDiv = $('<p>').text('Player 2').attr('id', 'choice');
+      addDiv.insertAfter($(this));
+      choose1++;
+      $(this).off('click');
+      setTimeout("$('#startGameBut').show()",200);
+   }
+
 })
+
+
 
 // $('.column').addClass('blank');
 
