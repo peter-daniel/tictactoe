@@ -11,7 +11,7 @@ body {
     margin: 0;
 }
 h1 {
-  margin-top: 70px;
+    margin-top: 70px;
     letter-spacing: -2px;
     font-size: 45px;
     font-weight: 700;
@@ -29,34 +29,31 @@ p {
 #player1panel, #player2panel {
     position: absolute;
     top: 200px;
-    width: 200px;
+    width: 350px;
     height: 350px;
     border-radius: 15px;
 }
 #player1panel {
-    left: 100px;
-    background-color: #4cb992;
+    left: 5px;
 }
 #player2panel {
-    right: 100px;
-    background-color: #ea9e53;
+    right: 50px;
 }
 #player1title, #player2title {
     color: white;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-    margin-top: 30px;
+    margin-top: 55px;
     font-size: 18px;
     font-weight: 400;
 }
 #player1score, #player2score {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
     color: white;
-    margin-top: 20px;
-    font-size: 180px;
+    margin-top: -15px;
+    font-size: 100px;
     font-weight: 600;
 }
-#ga {
-}
+#ga {}
 #startGameBut {
     margin: 150px 10px 0 0;
     border: none;
@@ -87,7 +84,7 @@ p {
     justify-content: center;
 }
 #chooseToken img {
-  margin-top: 40px;
+    margin-top: 40px;
     width: 80px;
     height: 80px;
     cursor: pointer;
@@ -126,8 +123,10 @@ p {
     opacity: 1;
 }
 .p1 {
-    /*background-image: url('../images/blue.png');*/
+  background-size: contain;
+background-repeat: no-repeat;
 }
 .p2 {
-    /*background-image: url('../images/red.png');*/
+  background-size: contain;
+  background-repeat: no-repeat;
 }

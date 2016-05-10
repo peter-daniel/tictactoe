@@ -5,7 +5,8 @@ var card = ''
 var turn = 0;
 var player = 'player 1';
 var gameEnd = 1;
-var player1Score, player2Score;
+var pOneScore = 0;
+var pTwoScore = 0;
 var tokenChoice1 = '';
 var tokenColour = '';
 
@@ -30,6 +31,7 @@ $('#chooseToken div img').on('click', function() {
       addDiv.insertAfter($(this));
       choose1++;
       $(this).off('click');
+      $('#player1panel').addClass('p1').css('background-image', 'url(\"'+tokenChoice1+'\"');
 
    } else if (choose1 === 1) {
       tokenChoice2 = (this.src);
@@ -43,8 +45,10 @@ $('#chooseToken div img').on('click', function() {
       choose1++;
       $(this).off('click');
       setTimeout("$('#startGameBut').show()",200);
-   }
+      $('#player2panel').addClass('p2').css('background-image', 'url(\"'+tokenChoice2+'\"');
+};
 });
+
 
 $('#startGameBut').on('click', function(){
   $('#sub').hide();
@@ -57,12 +61,13 @@ $('#startGameBut').on('click', function(){
 
 // $('.column').addClass('blank');
 
+
+
+
 $('.column').on('click', function() {
-
-
    if ($(this).text() == '') {
       if (turn % 2 !== 0) {
-         $(this).addClass('p1').css('background-image', 'url(\"'+tokenChoice1+'\"')
+         $(this).addClass('p1').css('background-image', 'url(\"'+tokenChoice1+'\"');
          card = 'p1'
          player = 'player 1';
 
@@ -108,6 +113,8 @@ function checkResult() {
       $('.1, .2, .3').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
+
    } else if (
       $('.4').text() === card &&
       $('.5').text() === card &&
@@ -115,6 +122,7 @@ function checkResult() {
       $('.4, .5, .6').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    } else if (
       $('.7').text() === card &&
       $('.8').text() === card &&
@@ -122,6 +130,7 @@ function checkResult() {
       $('.7, .8, .9').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    }
    // verticals
    if (
@@ -131,6 +140,7 @@ function checkResult() {
       $('.1, .4, .7').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    } else if (
       $('.2').text() === card &&
       $('.5').text() === card &&
@@ -138,6 +148,7 @@ function checkResult() {
       $('.2, .5, .8').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    } else if (
       $('.3').text() === card &&
       $('.6').text() === card &&
@@ -145,6 +156,7 @@ function checkResult() {
       $('.3, .6, .9').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    }
    //diagonals
    if (
@@ -154,6 +166,7 @@ function checkResult() {
       $('.1, .5, .9').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    } else if (
       $('.3').text() === card &&
       $('.5').text() === card &&
@@ -161,5 +174,18 @@ function checkResult() {
       $('.3, .5, .7').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
+      setScore()
    }
+}
+
+function setScore(){
+  if(player === 'player 1'){
+    pOneScore++
+  }else if (player === 'player 2'){
+    pTwoScore++
+    console.log(pOneScore);
+    console.log(pTwoScore);
+  }
+  $('#player1score').text(pOneScore);
+  $('#player2score').text(pTwoScore);
 }
