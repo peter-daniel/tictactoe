@@ -1,47 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
-  <link rel="stylesheet" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="stylesheet" href="css/styles.css">
 
-  <meta charset="UTF-8">
-  <title>Tic tac Toe</title>
+    <meta charset="UTF-8">
+    <title>Tic tac Toe</title>
 </head>
+
 <body>
-  <header>
-    <div>
-    <h1>Tic Tac Slack</h1>
+    <header>
+        <div>
+            <h1>Tic Tac Slack</h1>
+            <p>Choose your token</p>
+        </div>
+    </header>
+    <div id="chooseToken">
+        <img src="images/yellow.png" alt="yellow">
+        <img src="images/green.png" alt="green">
+        <img src="images/red.png" alt="red">
+        <img src="images/blue.png" alt="blue">
     </div>
-  </header>
-<div id="container">
-  <div class="player1Score">
-  </div>
-  <div id="ga">
-  <div class="row">
-    <div class="column 1"></div>
-    <div class="column 2"></div>
-    <div class="column 3"></div>
-  </div>
-  <div class="row">
-    <div class="column 4"></div>
-    <div class="column 5"></div>
-    <div class="column 6"></div>
-  </div>
-  <div class="row">
-    <div class="column 7"></div>
-    <div class="column 8"></div>
-    <div class="column 9"></div>
-  </div>
-  <div class="player2Score">
+    <div id="vs">
+        <div class="p1">
+            <h2>Player 1</h2>
+            <img src="" alt="">
+        </div>
+        <div class="p2">
+            <h2>Player 2</h2>
+        </div>
+        <div id="scores">
+            <div id="player1panel">
+                <p id="player1title">Player 1</p>
+                <p id="player1score">0</p>
+            </div>
+            <div id="player2panel">
+                <p id="player2title">Player 2</p>
+                <p id="player2score">0</p>
+            </div>
+        </div>
+        <div id="container">
 
-  </div>
-</div>
-</div>
+            <div id="ga">
+                <div class="row">
+                    <div class="column 1"></div>
+                    <div class="column 2"></div>
+                    <div class="column 3"></div>
+                </div>
+                <div class="row">
+                    <div class="column 4"></div>
+                    <div class="column 5"></div>
+                    <div class="column 6"></div>
+                </div>
+                <div class="row">
+                    <div class="column 7"></div>
+                    <div class="column 8"></div>
+                    <div class="column 9"></div>
+                </div>
+
+            </div>
+        </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>

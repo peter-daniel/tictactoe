@@ -1,55 +1,109 @@
 * {
-  /*border: 1px solid red;*/
-  box-sizing: border-box;
-  font-family: 'Varela', sans-serif;
+    /*border: 1px solid red;*/
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
+body {
+    text-align: center;
+    margin: 0;
+}
+h1 {
+    letter-spacing: -2px;
+    font-size: 45px;
+    font-weight: 700;
+}
+p {
+    font-size: 22px;
+    font-weight: 300;
+}
+#container {
+    background-image: url('../images/slack_back.gif');
+    margin: 0 auto;
+    width: 450px;
+    height: 450px;
+}
+#player1panel, #player2panel {
+    position: absolute;
+    top: 200px;
+    width: 200px;
+    height: 350px;
+    border-radius: 15px;
+}
+#player1panel {
+    left: 100px;
+    background-color: #4cb992;
+}
+#player2panel {
+    right: 100px;
+    background-color: #ea9e53;
+}
+#player1title, #player2title {
+    color: white;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 400;
+}
+#player1score, #player2score {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    color: white;
+    margin-top: 20px;
+    font-size: 180px;
+    font-weight: 600;
+}
+#ga {}
 
-body{
+.p1, .p2{
   text-align: center;
-
-  margin: 0;
-
+  padding: 40px;
 }
 
-
-
-#container{
-  background-image: url('../images/slack_back.gif');
-  margin: 0 auto;
-  width: 450px;
-  height: 450px;
-  background-color: white;
-}
-
-#ga{
-
-}
-
-.row {
+#vs{
   display: flex;
-  width: 100%;
-  height: 150px;
+  justify-content: center;
 }
-
+#chooseToken img {
+    width: 80px;
+    height:80px;
+    cursor: pointer;
+    opacity: .6;
+    transition: all 0.2s ease;
+}
+#chooseToken img:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.on {
+    opacity: 1;
+}
+#chooseToken {
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.row {
+    display: flex;
+    width: 100%;
+    height: 150px;
+}
 .column {
-  opacity: 0.4;
-  font-size: 0px;
-  color: #fff;
-  cursor: pointer;
-  background-size: cover;
-  /*border: 3px solid blue;*/
-  width: 150px;
-  height: 150px;
+    opacity: 0.6;
+    font-size: 0px;
+    color: #fff;
+    cursor: pointer;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
 }
-
-.chosen{
-  opacity: 1;
+.chosen {
+    opacity: 1;
 }
-
-.x{
-    background-image: url('../images/x.png');
+.x {
+    background-image: url('../images/blue.png');
 }
-
-.o{
-    background-image: url('../images/0.png');
+.o {
+    background-image: url('../images/red.png');
 }
+button {}

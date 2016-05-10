@@ -5,6 +5,21 @@ var card = ''
 var turn = 0;
 var player = 'player 1';
 var gameEnd = 1;
+var player1Score, player2Score;
+var tokenChoice = '';
+var tokenColour = ''
+
+
+$('#scores').hide();
+$('#container').hide();
+
+
+
+$('#chooseToken img').on('click', function(){
+  tokenChoice = (this.src);
+  $('#vs .p1 div').append('<img src=\"'+tokenChoice+'\">')
+  console.log(tokenChoice);
+})
 
 // $('.column').addClass('blank');
 
@@ -12,6 +27,7 @@ $('.column').on('click', function() {
    if ($(this).text() == '') {
       if (turn % 2 !== 0) {
          $(this).addClass('x');
+         $('.x').css('background-image', tokenChoice)
          card = 'x'
          player = 'player 2';
       } else {
@@ -111,18 +127,3 @@ function checkResult() {
       console.log('the winner is ' + player);
    }
 }
-
-
-
-
-
-
-
-// var randomRow = Math.round(Math.random()*5);
-// var randomColumn = Math.round(Math.random()*5);
-//
-// console.log(randomRow);
-//
-// console.log($('#board div:eq(1)'));
-//
-//   $('#board .4 .2').append('<img src="http://icons.iconarchive.com/icons/icons8/windows-8/128/Military-Battleship-icon.png" alt="">');
