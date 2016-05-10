@@ -6,6 +6,8 @@ var turn = 0;
 var player = 'player 1';
 var gameEnd = 1;
 
+// $('.column').addClass('blank');
+
 $('.column').on('click', function() {
    if ($(this).text() == '') {
       if (turn % 2 !== 0) {
@@ -15,7 +17,7 @@ $('.column').on('click', function() {
       } else {
          $(this).addClass('o');
          player = 'player 1';
-        card = 'o'
+         card = 'o'
       }
       $(this).text(card);
       turn++;
