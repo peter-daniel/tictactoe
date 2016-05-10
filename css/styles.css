@@ -3,15 +3,15 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-
-*:focus{
-  display: none;
+*:focus {
+    display: none;
 }
 body {
     text-align: center;
     margin: 0;
 }
 h1 {
+  margin-top: 70px;
     letter-spacing: -2px;
     font-size: 45px;
     font-weight: 700;
@@ -22,7 +22,7 @@ p {
 }
 #container {
     background-image: url('../images/slack_back.gif');
-    margin: 0 auto;
+    margin: 70px auto;
     width: 450px;
     height: 450px;
 }
@@ -48,51 +48,48 @@ p {
     font-size: 18px;
     font-weight: 400;
 }
-#player1score, #play  er2score {
+#player1score, #player2score {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
     color: white;
     margin-top: 20px;
     font-size: 180px;
     font-weight: 600;
 }
-#ga {}
-
-#startGameBut{
-  margin: 90px 10px 0 0;
-  border: none;
-  border-radius: 20px;
-  padding: 30px 120px;
-  font-size: 33px;
-  font-weight: 600;
-  color: #555;
-  background-color: #ebebeb;
-  border: 1px solid #fff;
-  transition: all 0.2s ease;
+#ga {
 }
-
-#startGameBut:hover{
-  color: white;
-  background-color: #ea9e53;
+#startGameBut {
+    margin: 150px 10px 0 0;
+    border: none;
+    border-radius: 20px;
+    padding: 30px 120px;
+    font-size: 33px;
+    font-weight: 600;
+    color: #555;
+    background-color: #ebebeb;
+    border: 1px solid #fff;
+    transition: all 0.2s ease;
 }
-
+#startGameBut:hover {
+    color: white;
+    background-color: #ea9e53;
+}
 #choice {
-  color: #666  ;
-  margin: -30px;
-  font-weight: 600;
+    color: #666;
+    margin: -30px;
+    font-weight: 600;
 }
-
-.p1, .p2{
-  text-align: center;
-  padding: 40px;
+.p1, .p2 {
+    text-align: center;
+    padding: 40px;
 }
-
-#vs{
-  display: flex;
-  justify-content: center;
+#vs {
+    display: flex;
+    justify-content: center;
 }
 #chooseToken img {
+  margin-top: 40px;
     width: 80px;
-    height:80px;
+    height: 80px;
     cursor: pointer;
     opacity: .6;
     transition: all 0.2s ease;
@@ -128,9 +125,9 @@ p {
 .chosen {
     opacity: 1;
 }
-.x {
-    background-image: url('../images/blue.png');
+.p1 {
+    /*background-image: url('../images/blue.png');*/
 }
-.o {
-    background-image: url('../images/red.png');
+.p2 {
+    /*background-image: url('../images/red.png');*/
 }

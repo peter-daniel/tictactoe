@@ -6,7 +6,7 @@ var turn = 0;
 var player = 'player 1';
 var gameEnd = 1;
 var player1Score, player2Score;
-var tokenChoice = '';
+var tokenChoice1 = '';
 var tokenColour = '';
 
 
@@ -20,9 +20,7 @@ var choose2 = 0;
 
 $('#chooseToken div img').on('click', function() {
    if (choose1 === 0) {
-      tokenChoice = (this.src);
-      console.log(this.src);
-      // $('#vs .p1 div').append('<img src=\"' + tokenChoice + '\">');
+      tokenChoice1 = (this.src);
       $(this).css({
          'opacity': '1',
          'width': '200px',
@@ -34,9 +32,7 @@ $('#chooseToken div img').on('click', function() {
       $(this).off('click');
 
    } else if (choose1 === 1) {
-      tokenChoice = (this.src);
-      console.log(this.src);
-      // $('#vs .p1 div').append('<img src=\"' + tokenChoice + '\">');
+      tokenChoice2 = (this.src);
       $(this).css({
          'opacity': '1',
          'width': '200px',
@@ -48,24 +44,32 @@ $('#chooseToken div img').on('click', function() {
       $(this).off('click');
       setTimeout("$('#startGameBut').show()",200);
    }
+});
+
+$('#startGameBut').on('click', function(){
+  $('#sub').hide();
+  $('#startGameBut').hide();
+  $('#chooseToken').hide();
+  $('#scores').show();
+  $('#container').show();
 
 })
-
-
 
 // $('.column').addClass('blank');
 
 $('.column').on('click', function() {
+
+
    if ($(this).text() == '') {
       if (turn % 2 !== 0) {
-         $(this).addClass('x');
-         $('.x').css('background-image', tokenChoice)
-         card = 'x'
-         player = 'player 2';
-      } else {
-         $(this).addClass('o');
+         $(this).addClass('p1').css('background-image', 'url(\"'+tokenChoice1+'\"')
+         card = 'p1'
          player = 'player 1';
-         card = 'o'
+
+      } else {
+         $(this).addClass('p2').css('background-image', 'url(\"'+tokenChoice2+'\"');
+         player = 'player 2';
+         card = 'p2'
       }
       $(this).text(card);
       turn++;
