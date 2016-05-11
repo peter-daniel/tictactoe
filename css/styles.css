@@ -20,34 +20,34 @@ p {
     font-size: 30px;
     font-weight: 300;
 }
-
-#sub{
-  margin-top: 80px;
-  animation: .6s ease-in infinite pulse;
+#sub {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    animation: .6s ease-in infinite pulse;
 }
-
 @-webkit-keyframes pulse {
-    0%   {opacity: 1;}
-    50%  {opacity: .5;}
-    100% {opacity: 1;}
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
-
-
-
-
-
 
 /*/////////////////////////////////////////////
 / SELECT WHO TO PLAY WITH  //////////////////////////////////////
 /////////////////////////////////////////////*/
 
-#selection{
-  text-align: center;
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
+#selection {
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
 }
-
 .selectionBut {
     margin: 40px 15px 0 0;
     border: none;
@@ -60,18 +60,10 @@ p {
     border: 1px solid #fff;
     transition: all 0.2s ease;
 }
-
-
-
 .selectionBut:hover {
     color: white;
     background-color: #ea9e53;
 }
-
-
-
-
-
 
 /*/////////////////////////////////////////////
 / SELECT TOKEN  //////////////////////////////////////
@@ -82,7 +74,6 @@ p {
     margin: -30px;
     font-weight: 600;
 }
-
 #chooseToken {
     display: inline-block;
     text-align: center;
@@ -90,7 +81,6 @@ p {
     margin: 0 auto;
     justify-content: center;
 }
-
 #chooseToken img {
     margin-top: 10px;
     width: 150px;
@@ -103,11 +93,9 @@ p {
     cursor: pointer;
     opacity: 1;
 }
-
 .on {
     opacity: 1;
 }
-
 #startGameBut {
     margin: 150px 10px 0 0;
     border: none;
@@ -120,32 +108,27 @@ p {
     border: 1px solid #fff;
     transition: all 0.2s ease;
 }
-
 #startGameBut:hover {
     color: white;
     background-color: #ea9e53;
 }
-
 #ga {}
 
-
-
-
-
-
-
-
-  /*/////////////////////////////////////////////
+/*/////////////////////////////////////////////
   / GAME  //////////////////////////////////////
   /////////////////////////////////////////////*/
 
-  #gameContainer {
-      background-image: url('../images/slack_back.gif');
-      margin: 70px auto;
-      width: 690px;
-      height: 690px;
-  }
-
+#gameContainer {
+    position: absolute;
+    z-index: -1;
+    top: 300px;
+    left: 0%;
+    right: 0%;
+    background-image: url('../images/slack_back.gif');
+    margin: 0 auto;
+    width: 690px;
+    height: 690px;
+}
 .row {
     display: flex;
     width: 100%;
@@ -160,36 +143,34 @@ p {
     width: 230px;
     height: 230px;
 }
-
 @-webkit-keyframes sizeup {
-    0%   {width: 150px;}
-    100% {width:: 200px;}
+    0% {
+        width: 150px;
+    }
+    100% {
+        width: : 200px;
+    }
 }
-
-.chosen{
-  opacity: 1;
+.chosen {
+    opacity: 1;
 }
-
 .p1, .p2 {
     text-align: center;
     padding: 40px;
 }
 .p1 {
-  background-size: contain;
-background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .p2 {
-  background-size: contain;
-  background-repeat: no-repeat;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .blank {
-  background-image: url('../images/blank.gif');
-  background-size: contain;
-  background-repeat: no-repeat;
+    background-image: url('../images/blank.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-
-
-
 #player1panel, #player2panel {
     position: absolute;
     top: 20px;
@@ -216,4 +197,17 @@ background-repeat: no-repeat;
     margin-top: -15px;
     font-size: 100px;
     font-weight: 600;
+}
+.resetBut {
+    line-height: 0;
+    margin: 0 0 0 15px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 30px;
+    font-size: 33px;
+    font-weight: 600;
+    color: #555;
+    background-color: #ebebeb;
+    border: 1px solid #fff;
+    transition: all 0.2s ease;
 }

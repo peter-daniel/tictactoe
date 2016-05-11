@@ -1,7 +1,7 @@
 // choose your token?
 
 
-var card = ''
+var card = '';
 var turn = 1;
 var player = 'player 1';
 var gameEnd = 1;
@@ -23,21 +23,21 @@ var choose1 = 0;
 var choose2 = 0;
 
 $('#selection button').on('click', function() {
-   if ($(this).hasClass('1')) {
+   if ($(this).hasClass('a')) {
       $('#selection').hide();
       $('#chooseToken').show();
       $('#sub').text('Players choose your tokens');
-   } else if ($(this).hasClass('2')) {
-     $('#sub').text('UNDER CONSTRUCTION...');
-
+   } else if ($(this).hasClass('b')) {
+      $('#sub').text('UNDER CONSTRUCTION...');
       $('#selection').hide();
       $('#playComputer').show();
    }
 })
 
-$('#playComputer #selectionBut').on('click', function() {
+$('#playComputer .selectionBut').on('click', function() {
    $('#selection').show();
    $('#playComputer').hide();
+   $('#sub').text('Who do you want to play with?');
 })
 
 $('#chooseToken div img').on('click', function() {
@@ -77,6 +77,7 @@ $('#startGameBut').on('click', function() {
    $('#scores').show();
    $('#gameContainer').show();
    $('#sub').text('Player 1\'s turn...');
+   playGame();
 
 })
 
@@ -84,35 +85,41 @@ $('#startGameBut').on('click', function() {
 
 
 
+function playGame() {
+   $('.column').on('click', function() {
+      if ($(this).text() == '') {
+         if (turn % 2 !== 0) {
+            $('#sub').text('Player 2\'s turn...');
+            // var token1 = $('<img>').attr('src', 'tokenChoice1')
+            // $(this).append(token1);
+            $(this).addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
+            card = 'p1';
+            player = 'player 1';
 
-$('.column').on('click', function() {
-   if ($(this).text() == '') {
-      if (turn % 2 !== 0) {
-        $('#sub').text('Player 2\'s turn...');
-         $(this).addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
-         card = 'p1';
-         player = 'player 1';
-
-      } else {
-        $('#sub').text('Player 1\'s turn...');
-         $(this).addClass('p2').css('background-image', 'url(\"' + tokenChoice2 + '\"');
-         player = 'player 2';
-         card = 'p2';
+         } else {
+            $('#sub').text('Player 1\'s turn...');
+            $(this).addClass('p2').css('background-image', 'url(\"' + tokenChoice2 + '\"');
+            player = 'player 2';
+            card = 'p2';
+         }
+         $(this).text(card);
+         checkResult();
+         turn++;
+         checkDraw();
+         endTheGame();
+         console.log(turn);
+         console.log(player);
+         console.log(card);
       }
-      $(this).text(card);
-      checkResult();
-      turn++;
-      checkDraw();
-      endTheGame();
-      console.log(turn);
-      console.log(player);
-   }
-});
+   });
+};
+
 
 function checkDraw() {
    if (turn >= 10) {
       console.log('its a draw');
       $('.column').off('click');
+      $('#sub').html('it\'s a draw' + ' - ' + '<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
    }
 }
 
@@ -122,11 +129,36 @@ function endTheGame() {
    }
 }
 
-$('#reset').on('click', function() {
-   $('.column')('p1').css('background-image', "url('../images/blank.gif')");
-   var turn = 1;
-   var player = 'player 1';
-})
+function setScore() {
+   if (player === 'player 1') {
+      pOneScore++
+      $('.p2').css('opacity', '.3');
+      $('#sub').html('Player 1 is the winner' + ' - ' + '<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
+   } else if (player === 'player 2') {
+      pTwoScore++
+      $('.p2').css('opacity', '.3');
+      $('#sub').html('Player 1 is the winner' + ' - ' + '<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
+   }
+   restClickFunction()
+   $('#player1score').text(pOneScore);
+   $('#player2score').text(pTwoScore);
+}
+
+function restClickFunction() {
+   $('#reset').on('click', function() {
+      console.log('reset it');
+      $('.column').css('background-image', 'none');
+      $('.column').text('')
+      $('.column').removeClass('chosen')
+      $('.p1, .p2').css('opacity', '1');
+      card = '';
+      turn = 1;
+      player = 'player 1';
+      gameEnd = 1;
+      playGame();
+   })
+}
+
 
 function checkResult() {
    // horizontals
@@ -158,7 +190,6 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    }
    // verticals
    if (
@@ -169,7 +200,6 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    } else if (
       $('.2').text() === card &&
       $('.5').text() === card &&
@@ -178,7 +208,6 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    } else if (
       $('.3').text() === card &&
       $('.6').text() === card &&
@@ -187,7 +216,6 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    }
    //diagonals
    if (
@@ -198,7 +226,6 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    } else if (
       $('.3').text() === card &&
       $('.5').text() === card &&
@@ -207,18 +234,5 @@ function checkResult() {
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-      $('#reset').show();
    }
-}
-
-function setScore() {
-   if (player === 'player 1') {
-      pOneScore++
-   } else if (player === 'player 2') {
-      pTwoScore++
-      console.log(pOneScore);
-      console.log(pTwoScore);
-   }
-   $('#player1score').text(pOneScore);
-   $('#player2score').text(pTwoScore);
 }
