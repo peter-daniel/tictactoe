@@ -17,18 +17,182 @@ h1 {
     font-weight: 700;
 }
 p {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 300;
 }
-#container {
-    background-image: url('../images/slack_back.gif');
-    margin: 70px auto;
-    width: 450px;
-    height: 450px;
+
+#sub{
+  margin-top: 80px;
+  animation: .6s ease-in infinite pulse;
 }
+
+@-webkit-keyframes pulse {
+    0%   {opacity: 1;}
+    50%  {opacity: .5;}
+    100% {opacity: 1;}
+}
+
+
+
+
+
+
+/*/////////////////////////////////////////////
+/ SELECT WHO TO PLAY WITH  //////////////////////////////////////
+/////////////////////////////////////////////*/
+
+#selection{
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.selectionBut {
+    margin: 40px 15px 0 0;
+    border: none;
+    border-radius: 10px;
+    padding: 20px 60px;
+    font-size: 33px;
+    font-weight: 600;
+    color: #555;
+    background-color: #ebebeb;
+    border: 1px solid #fff;
+    transition: all 0.2s ease;
+}
+
+
+
+.selectionBut:hover {
+    color: white;
+    background-color: #ea9e53;
+}
+
+
+
+
+
+
+/*/////////////////////////////////////////////
+/ SELECT TOKEN  //////////////////////////////////////
+/////////////////////////////////////////////*/
+
+#choice {
+    color: #666;
+    margin: -30px;
+    font-weight: 600;
+}
+
+#chooseToken {
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+#chooseToken img {
+    margin-top: 10px;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    opacity: .6;
+    transition: all 0.2s ease;
+}
+#chooseToken img:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.on {
+    opacity: 1;
+}
+
+#startGameBut {
+    margin: 150px 10px 0 0;
+    border: none;
+    border-radius: 20px;
+    padding: 30px 120px;
+    font-size: 33px;
+    font-weight: 600;
+    color: #555;
+    background-color: #ebebeb;
+    border: 1px solid #fff;
+    transition: all 0.2s ease;
+}
+
+#startGameBut:hover {
+    color: white;
+    background-color: #ea9e53;
+}
+
+#ga {}
+
+
+
+
+
+
+
+
+  /*/////////////////////////////////////////////
+  / GAME  //////////////////////////////////////
+  /////////////////////////////////////////////*/
+
+  #gameContainer {
+      background-image: url('../images/slack_back.gif');
+      margin: 70px auto;
+      width: 690px;
+      height: 690px;
+  }
+
+.row {
+    display: flex;
+    width: 100%;
+    height: 230px;
+}
+.column {
+    opacity: 0.6;
+    font-size: 0px;
+    color: #fff;
+    cursor: pointer;
+    background-size: cover;
+    width: 230px;
+    height: 230px;
+}
+
+@-webkit-keyframes sizeup {
+    0%   {width: 150px;}
+    100% {width:: 200px;}
+}
+
+.chosen{
+  opacity: 1;
+}
+
+.p1, .p2 {
+    text-align: center;
+    padding: 40px;
+}
+.p1 {
+  background-size: contain;
+background-repeat: no-repeat;
+}
+.p2 {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.blank {
+  background-image: url('../images/blank.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+
 #player1panel, #player2panel {
     position: absolute;
-    top: 200px;
+    top: 20px;
     width: 350px;
     height: 350px;
     border-radius: 15px;
@@ -52,81 +216,4 @@ p {
     margin-top: -15px;
     font-size: 100px;
     font-weight: 600;
-}
-#ga {}
-#startGameBut {
-    margin: 150px 10px 0 0;
-    border: none;
-    border-radius: 20px;
-    padding: 30px 120px;
-    font-size: 33px;
-    font-weight: 600;
-    color: #555;
-    background-color: #ebebeb;
-    border: 1px solid #fff;
-    transition: all 0.2s ease;
-}
-#startGameBut:hover {
-    color: white;
-    background-color: #ea9e53;
-}
-#choice {
-    color: #666;
-    margin: -30px;
-    font-weight: 600;
-}
-.p1, .p2 {
-    text-align: center;
-    padding: 40px;
-}
-#vs {
-    display: flex;
-    justify-content: center;
-}
-#chooseToken img {
-    margin-top: 40px;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    opacity: .6;
-    transition: all 0.2s ease;
-}
-#chooseToken img:hover {
-    cursor: pointer;
-    opacity: 1;
-}
-.on {
-    opacity: 1;
-}
-#chooseToken {
-    display: inline-block;
-    text-align: center;
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-}
-.row {
-    display: flex;
-    width: 100%;
-    height: 150px;
-}
-.column {
-    opacity: 0.6;
-    font-size: 0px;
-    color: #fff;
-    cursor: pointer;
-    background-size: cover;
-    width: 150px;
-    height: 150px;
-}
-.chosen {
-    opacity: 1;
-}
-.p1 {
-  background-size: contain;
-background-repeat: no-repeat;
-}
-.p2 {
-  background-size: contain;
-  background-repeat: no-repeat;
 }
