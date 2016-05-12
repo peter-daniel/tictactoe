@@ -123,45 +123,45 @@ function playGame() {
          // add allocated 'card' type as text to that dom element to test results
          $(this).text(card);
          turn++;
-         console.log('turn '+turn);
+         console.log('turn ' + turn);
 
          checkDraw();
-         checkEndGame();
+
          checkResult();
-         console.log('???');
+         checkEndGame();
       }
    });
 };
 
 
-function timerTick() {
-   window.clearInterval(myTimer);
-   if (gameEnd === 1) {
-      myTimer = window.setInterval(function() {
-         secondsPassed--;
-         $('#timer').html('Timer: &nbsp' + secondsPassed + ' &nbsp');
-         if (secondsPassed === 0) {
-            // display message and deduct 1 point if timed out
-            if (player === 'player 1') {
-               pOneScore--;
-               $('#timer').html('Get it together player 1...');
-               console.log(player);
-               window.clearInterval(myTimer);
-
-            } else if (player === 'player 2') {
-               pTwoScore--;
-               $('#timer').html('Get it together player 2...');
-               player = 'player 1';
-               console.log(player);
-               window.clearInterval(myTimer);
-            }
-            secondsPassed = 4;
-            $('#player1score').text(pOneScore);
-            $('#player2score').text(pTwoScore);
-         }
-      }, 1000);
-   }
-}
+// function timerTick() {
+//    window.clearInterval(myTimer);
+//    if (gameEnd === 1) {
+//       myTimer = window.setInterval(function() {
+//          secondsPassed--;
+//          $('#timer').html('Timer: &nbsp' + secondsPassed + ' &nbsp');
+//          if (secondsPassed === 0) {
+//             // display message and deduct 1 point if timed out
+//             if (player === 'player 1') {
+//                pOneScore--;
+//                $('#timer').html('Get it together player 1...');
+//                console.log(player);
+//                window.clearInterval(myTimer);
+//
+//             } else if (player === 'player 2') {
+//                pTwoScore--;
+//                $('#timer').html('Get it together player 2...');
+//                player = 'player 1';
+//                console.log(player);
+//                window.clearInterval(myTimer);
+//             }
+//             secondsPassed = 4;
+//             $('#player1score').text(pOneScore);
+//             $('#player2score').text(pTwoScore);
+//          }
+//       }, 1000);
+//    }
+// }
 
 function setScore() {
    if (player === 'player 1') {
@@ -194,7 +194,11 @@ function resetTheGame() {
          .text('')
       if (player === 'player 1') {
          $('#sub').html('Player &nbsp<span>1</span>&nbsp goes first');
+         turn = 1;
+         winnerGoesFirst = 10;
       } else {
+        turn = 0
+        winnerGoesFirst = 9;
          $('#sub').html('Player &nbsp<span>2</span>&nbsp goes first');
       }
       $('p1, .p2').removeClass('chosen');
@@ -210,19 +214,19 @@ function resetTheGame() {
    })
 }
 
-function setWinnerForNext() {
-   if (player === 'player 1') {
-      turn = 1;
-      winnerGoesFirst = 10;
-      $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
-   } else {
-      (player === 'player 2')
-      turn = 0;
-      winnerGoesFirst = 9;
-      $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
-   }
-   console.log('turn '+turn);
-}
+// function setWinnerForNext() {
+//    if (player === 'player 1') {
+//       turn = 1;
+//       winnerGoesFirst = 10;
+//       $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
+//    } else {
+//       (player === 'player 2')
+//       turn = 0;
+//       winnerGoesFirst = 9;
+//       $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
+//    }
+//    console.log('turn ' + turn);
+// }
 
 
 //////////////////////////////////////////////////////
@@ -243,9 +247,9 @@ function checkDraw() {
 
 function checkEndGame() {
    if (gameEnd === 0) {
-      setWinnerForNext();
+      // setWinnerForNext();
       $('.column').off('click');
-      console.log('endgame '+gameEnd);
+      console.log('endgame ' + gameEnd);
    }
 }
 
@@ -254,7 +258,7 @@ function checkResult() {
    // horizontals
    if ($('.1').text() === card && $('.2').text() === card && $('.3').text() === card) {
       $('.1, .2, .3').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
@@ -265,7 +269,7 @@ setScore();
       setScore();
    } else if ($('.7').text() === card && $('.8').text() === card && $('.9').text() === card) {
       $('.7, .8, .9').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
@@ -273,19 +277,19 @@ setScore();
    // verticals
    else if ($('.1').text() === card && $('.4').text() === card && $('.7').text() === card) {
       $('.1, .4, .7').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
    } else if ($('.2').text() === card && $('.5').text() === card && $('.8').text() === card) {
       $('.2, .5, .8').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
    } else if ($('.3').text() === card && $('.6').text() === card && $('.9').text() === card) {
       $('.3, .6, .9').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
@@ -293,13 +297,13 @@ setScore();
    //diagonals
    else if ($('.1').text() === card && $('.5').text() === card && $('.9').text() === card) {
       $('.1, .5, .9').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
    } else if ($('.3').text() === card && $('.5').text() === card && $('.7').text() === card) {
       $('.3, .5, .7').addClass('chosen');
-setScore();
+      setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
 
