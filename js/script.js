@@ -12,7 +12,7 @@ var tokenColour = '';
 var winnerGoesFirst = 10; // changes draw total
 var choose1 = 0;
 var choose2 = 0;
-
+var myTimer;
 var timerLength = 0;
 var secondsPassed = 6;
 
@@ -29,30 +29,28 @@ $('#timer').hide();
 
 
 function timerTick() {
+  window.clearInterval(myTimer);
    if (gameEnd = 1) {
       myTimer = window.setInterval(function() {
          console.log('Time tick');
          secondsPassed--;
          $('#timer').html('Timer: &nbsp' + secondsPassed + ' &nbsp');
-      }, 1000);
 
-      if (secondsPassed === 0) {
-         if (player = 'player 1') {
-            pOneScore--;
-            $('#timer').html('Player 1 has timed out...');
-            $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
-         } else {
-            pTwoScore--;
-            $('#timer').html('Player 2 has timed out...');
-            $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
+         if (secondsPassed === 0) {
+            if (player = 'player 1') {
+               pOneScore--;
+               $('#timer').html('Get it together player 1...');
+
+            } else if (player = 'player 2'){
+               pTwoScore--;
+               $('#timer').html('Get it together player 1...');
+            }
+            window.clearInterval(myTimer);
+            secondsPassed = 6;
+            $('#player1score').text(pOneScore);
+            $('#player2score').text(pTwoScore);
          }
-         window.clearInterval(myTimer);
-         turn++;
-         console.log(turn);
-         secondsPassed = 6;
-         $('#player1score').text(pOneScore);
-         $('#player2score').text(pTwoScore);
-      }
+      }, 1000);
    }
 }
 
@@ -124,23 +122,25 @@ $('#startGameBut').on('click', function() {
 
 
 function playGame() {
+  $('#timer').show();
+  timerTick();
    $('.column').on('click', function() {
       if ($(this).text() == '') {
          if (turn % 2 !== 0) {
-            timerTick();
+           $('#timer').show();
+           timerTick();
             $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
             $(this).addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
             card = 'p1';
             player = 'player 1';
             secondsPassed = 6;
-
          } else {
-            timerTick();
+           $('#timer').show();
+           timerTick();
             $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
             $(this).addClass('p2').css('background-image', 'url(\"' + tokenChoice2 + '\"');
             card = 'p2';
             player = 'player 2';
-
             secondsPassed = 6;
          }
          $(this).text(card);
@@ -185,7 +185,10 @@ function setScore() {
    resetTheGame()
    $('#player1score').text(pOneScore);
    $('#player2score').text(pTwoScore);
+   window.clearInterval(myTimer);
+   $('#timer').hide();
 }
+
 
 function resetTheGame() {
    $('#reset').on('click', function() {
@@ -206,6 +209,7 @@ function resetTheGame() {
       card = '';
       gameEnd = 1;
       playGame();
+
    })
 }
 
