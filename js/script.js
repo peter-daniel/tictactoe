@@ -12,7 +12,7 @@ var tokenChoice2 = '';
 var winnerGoesFirst = 10;
 var choose1 = 0;
 var choose2 = 0;
-var myTimer;
+var myTimer = 0;
 var secondsPassed = 4;
 
 $('#chooseToken').hide();
@@ -22,6 +22,10 @@ $('#startGameBut').hide();
 $('#playComputer').hide();
 $('#timer').hide();
 
+
+//////////////////////////////////////////////////////
+///////// SELECTION
+//////////////////////////////////////////////////////
 
 // FIRST STAGE choose whoe to play
 $('#selection button').on('click', function() {
@@ -82,40 +86,49 @@ $('#startGameBut').on('click', function() {
    $('#chooseToken').hide();
    $('#scores').show();
    $('#gameContainer').show();
-   $('#sub').html('Player &nbsp<span>1\'</span>s&nbsp turn');
+   $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn');
    playGame();
    $('#timer').show();
-   timerTick();
+
 
 })
 
-
+//////////////////////////////////////////////////////
+///////// PLAY GAME
+//////////////////////////////////////////////////////
 
 function playGame() {
-  $('#timer').show();
+
    $('.column').on('click', function() {
-     timerTick();
+
       // check if column has been clicked
       if ($(this).text() == '') {
          // take alternate turns
          if (turn % 2 !== 0) {
             $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
-            // place token choice to background
+            // place token choice to column
             $(this).addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
-            card = 'p1';
             player = 'player 1';
+            card = 'p1';
+
          } else {
+
             $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
             $(this).addClass('p2').css('background-image', 'url(\"' + tokenChoice2 + '\"');
-            card = 'p2';
             player = 'player 2';
+            card = 'p2';
+
          }
+
          // add allocated 'card' type as text to that dom element to test results
          $(this).text(card);
          turn++;
-         checkResult();
+         console.log('turn '+turn);
+
          checkDraw();
-         endTheGame();
+         checkEndGame();
+         checkResult();
+         console.log('???');
       }
    });
 };
@@ -123,63 +136,30 @@ function playGame() {
 
 function timerTick() {
    window.clearInterval(myTimer);
-   secondsPassed = 4;
    if (gameEnd === 1) {
       myTimer = window.setInterval(function() {
          secondsPassed--;
          $('#timer').html('Timer: &nbsp' + secondsPassed + ' &nbsp');
-         console.log(secondsPassed);
          if (secondsPassed === 0) {
-           // display message and deduct 1 point if timed out
+            // display message and deduct 1 point if timed out
             if (player === 'player 1') {
-               pTwoScore--;
-               $('#timer').html('Get it together player 2...');
-               console.log(player);
-               window.clearInterval(myTimer);
-            } else if (player === 'player 2') {
                pOneScore--;
                $('#timer').html('Get it together player 1...');
                console.log(player);
                window.clearInterval(myTimer);
+
+            } else if (player === 'player 2') {
+               pTwoScore--;
+               $('#timer').html('Get it together player 2...');
+               player = 'player 1';
+               console.log(player);
+               window.clearInterval(myTimer);
             }
-            window.clearInterval(myTimer);
             secondsPassed = 4;
             $('#player1score').text(pOneScore);
             $('#player2score').text(pTwoScore);
          }
       }, 1000);
-   }
-}
-
-function SetWinnerForNext() {
-   if (player === 'player 1') {
-      turn = 1;
-      winnerGoesFirst = 10;
-      $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
-   } else {
-      (player === 'player 2')
-      turn = 0;
-      winnerGoesFirst = 9;
-      $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
-   }
-}
-
-
-function checkDraw() {
-  // 10 so that player 1 goes first
-   if (turn >= winnerGoesFirst) {
-      console.log('its a draw');
-      $('.column').off('click');
-      $('#sub').html('It\'s a draw &nbsp-&nbsp<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
-      $('#timer').hide();
-      resetTheGame();
-   }
-}
-
-function endTheGame() {
-   if (gameEnd === 0) {
-      turn = 1;
-      $('.column').off('click');
    }
 }
 
@@ -193,23 +173,23 @@ function setScore() {
       pTwoScore++
       $('#player2panel').addClass('chosen');
       $('#player1panel').css('opacity', '.3');
-      $('#sub').html('Player &nbsp<span>2</span>&nbsp is the winner &nbsp-&nbsp<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
+      $('#sub').html('Player &nbsp<span>2</span>&nbsp is the winner&nbsp-&nbsp<a id=\"reset\" href=\"#\">Play again</a>');
    }
-   resetTheGame();
    $('#player1score').text(pOneScore);
    $('#player2score').text(pTwoScore);
    window.clearInterval(myTimer);
    $('#timer').hide();
+   resetTheGame();
 }
 
 
 function resetTheGame() {
    $('#reset').on('click', function() {
       $('.column')
-        .removeClass('chosen')
+         .removeClass('chosen')
          .css({
             'background-image': 'none',
-            'opacity': '0.6'
+            // 'opacity': '0.6'
          })
          .text('')
       if (player === 'player 1') {
@@ -225,86 +205,103 @@ function resetTheGame() {
 
       card = '';
       gameEnd = 1;
-      secondsPassed = 4;
-      turn = 1;
 
-      timerTick();
-      SetWinnerForNext();
+
    })
+}
+
+function setWinnerForNext() {
+   if (player === 'player 1') {
+      turn = 1;
+      winnerGoesFirst = 10;
+      $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
+   } else {
+      (player === 'player 2')
+      turn = 0;
+      winnerGoesFirst = 9;
+      $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
+   }
+   console.log('turn '+turn);
+}
+
+
+//////////////////////////////////////////////////////
+///////// checks
+//////////////////////////////////////////////////////
+
+
+function checkDraw() {
+   // 10 so that player 1 goes first
+   if (turn >= winnerGoesFirst) {
+      console.log('its a draw');
+      $('.column').off('click');
+      $('#sub').html('It\'s a draw &nbsp-&nbsp<a id=\"reset\" href=\"#\"><strong> Play again</strong></a>');
+      $('#timer').hide();
+      resetTheGame();
+   }
+}
+
+function checkEndGame() {
+   if (gameEnd === 0) {
+      setWinnerForNext();
+      $('.column').off('click');
+      console.log('endgame '+gameEnd);
+   }
 }
 
 
 function checkResult() {
    // horizontals
-   if (
-      $('.1').text() === card &&
-      $('.2').text() === card &&
-      $('.3').text() === card) {
+   if ($('.1').text() === card && $('.2').text() === card && $('.3').text() === card) {
       $('.1, .2, .3').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
 
-   } else if (
-      $('.4').text() === card &&
-      $('.5').text() === card &&
-      $('.6').text() === card) {
+   } else if ($('.4').text() === card && $('.5').text() === card && $('.6').text() === card) {
       $('.4, .5, .6').addClass('chosen');
       gameEnd = 0;
       console.log('the winner is ' + player);
       setScore();
-   } else if (
-
-      $('.7').text() === card &&
-      $('.8').text() === card &&
-      $('.9').text() === card) {
+   } else if ($('.7').text() === card && $('.8').text() === card && $('.9').text() === card) {
       $('.7, .8, .9').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
+
    }
    // verticals
-   if (
-      $('.1').text() === card &&
-      $('.4').text() === card &&
-      $('.7').text() === card) {
+   else if ($('.1').text() === card && $('.4').text() === card && $('.7').text() === card) {
       $('.1, .4, .7').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
-   } else if (
-      $('.2').text() === card &&
-      $('.5').text() === card &&
-      $('.8').text() === card) {
+
+   } else if ($('.2').text() === card && $('.5').text() === card && $('.8').text() === card) {
       $('.2, .5, .8').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
-   } else if (
-      $('.3').text() === card &&
-      $('.6').text() === card &&
-      $('.9').text() === card) {
+
+   } else if ($('.3').text() === card && $('.6').text() === card && $('.9').text() === card) {
       $('.3, .6, .9').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
+
    }
    //diagonals
-   if (
-      $('.1').text() === card &&
-      $('.5').text() === card &&
-      $('.9').text() === card) {
+   else if ($('.1').text() === card && $('.5').text() === card && $('.9').text() === card) {
       $('.1, .5, .9').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
-   } else if (
-      $('.3').text() === card &&
-      $('.5').text() === card &&
-      $('.7').text() === card) {
+
+   } else if ($('.3').text() === card && $('.5').text() === card && $('.7').text() === card) {
       $('.3, .5, .7').addClass('chosen');
+setScore();
       gameEnd = 0;
       console.log('the winner is ' + player);
-      setScore();
+
    }
 }
