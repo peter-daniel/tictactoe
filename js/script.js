@@ -10,19 +10,53 @@ var pTwoScore = 0;
 var tokenChoice1 = '';
 var tokenColour = '';
 var winnerGoesFirst = 10; // changes draw total
+var choose1 = 0;
+var choose2 = 0;
+
+var timerLength = 0;
+var secondsPassed = 6;
 
 $('#chooseToken').hide();
 $('#scores').hide();
 $('#gameContainer').hide();
 $('#startGameBut').hide();
 $('#playComputer').hide();
-$('#reset').hide();
+$('#timer').hide();
 
 
 
 
-var choose1 = 0;
-var choose2 = 0;
+
+
+function timerTick() {
+   if (gameEnd = 1) {
+      myTimer = window.setInterval(function() {
+         console.log('Time tick');
+         secondsPassed--;
+         $('#timer').html('Timer: &nbsp' + secondsPassed + ' &nbsp');
+      }, 1000);
+
+      if (secondsPassed === 0) {
+         if (player = 'player 1') {
+            pOneScore--;
+            $('#timer').html('Player 1 has timed out...');
+            $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
+         } else {
+            pTwoScore--;
+            $('#timer').html('Player 2 has timed out...');
+            $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
+         }
+         window.clearInterval(myTimer);
+         turn++;
+         console.log(turn);
+         secondsPassed = 6;
+         $('#player1score').text(pOneScore);
+         $('#player2score').text(pTwoScore);
+      }
+   }
+}
+
+
 
 $('#selection button').on('click', function() {
    if ($(this).hasClass('a')) {
@@ -78,8 +112,10 @@ $('#startGameBut').on('click', function() {
    $('#chooseToken').hide();
    $('#scores').show();
    $('#gameContainer').show();
-   $('#sub').text('Player 1\'s turn...');
+   $('#sub').html('Player &nbsp<span>1\'</span>s&nbsp turn');
    playGame();
+   $('#timer').show();
+   timerTick();
 
 })
 
@@ -91,16 +127,21 @@ function playGame() {
    $('.column').on('click', function() {
       if ($(this).text() == '') {
          if (turn % 2 !== 0) {
+            timerTick();
             $('#sub').html('Player &nbsp<span>2\'s</span>&nbsp turn...');
             $(this).addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
             card = 'p1';
             player = 'player 1';
+            secondsPassed = 6;
 
          } else {
+            timerTick();
             $('#sub').html('Player &nbsp<span>1\'s</span>&nbsp turn...');
             $(this).addClass('p2').css('background-image', 'url(\"' + tokenChoice2 + '\"');
-            player = 'player 2';
             card = 'p2';
+            player = 'player 2';
+
+            secondsPassed = 6;
          }
          $(this).text(card);
          checkResult();
