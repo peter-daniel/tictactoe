@@ -85,7 +85,8 @@ p span{
 
 #choice {
     color: #666;
-    margin: -30px;
+    line-height: -5px;
+    margin: 0;
     font-weight: 600;
 }
 #chooseToken {
@@ -96,7 +97,7 @@ p span{
     justify-content: center;
 }
 #chooseToken img {
-    margin-top: 10px;
+    margin-top: -30px;
     width: 150px;
     height: 150px;
     cursor: pointer;
@@ -111,7 +112,7 @@ p span{
     opacity: 1;
 }
 #startGameBut {
-    margin: 150px 10px 0 0;
+    margin: 440px 10px 0 0;
     border: none;
     border-radius: 20px;
     padding: 30px 120px;
@@ -149,6 +150,18 @@ p span{
   color: #d6145f;
   font-weight: 700;
   animation: scaleKeys .3s ease-in-out 1;
+}
+
+#gameHolder {
+    position: absolute;
+    z-index: -2;
+    top: 350px;
+    left: 0%;
+    right: 0%;
+    background-image: url('../images/slack-logo-static.gif');
+    margin: 0 auto;
+    width: 690px;
+    height: 690px;
 }
 
 #gameContainer {

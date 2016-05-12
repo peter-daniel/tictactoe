@@ -51,11 +51,11 @@ $('#chooseToken div img').on('click', function() {
       //animate the tokens and add player #
       $(this).css({
          'opacity': '1',
-         'width': '300px',
-         'height': '300px'
+         'width': '200px',
+         'height': '200px'
       });
       var addDiv = $('<p>').text('Player 1').attr('id', 'choice');
-      addDiv.insertAfter($(this));
+      addDiv.insertBefore($(this));
       choose1++;
       $(this).off('click');
       $('#player1panel').addClass('p1').css('background-image', 'url(\"' + tokenChoice1 + '\"');
@@ -64,11 +64,11 @@ $('#chooseToken div img').on('click', function() {
       tokenChoice2 = (this.src);
       $(this).css({
          'opacity': '1',
-         'width': '300px',
-         'height': '300px'
+         'width': '200px',
+         'height': '200px'
       });
       var addDiv = $('<p>').text('Player 2').attr('id', 'choice');
-      addDiv.insertAfter($(this));
+      addDiv.insertBefore($(this));
       choose1++;
       $(this).off('click');
       $('#startGameBut').show();
