@@ -177,7 +177,6 @@ function setScore() {
    $('#player1score').text(pOneScore);
    $('#player2score').text(pTwoScore);
    window.clearInterval(myTimer);
-   $('#timer').hide();
    resetTheGame();
 }
 
