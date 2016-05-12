@@ -1,6 +1,7 @@
 #Simple Tic Tac Toe game
 
 
+http://peterdaniel-fewd.github.io/tictactoe/
 
 A bit of a Slack branding exercise - using CSS jQuery and HTML5.
 
