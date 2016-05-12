@@ -126,7 +126,6 @@ function playGame() {
          console.log('turn ' + turn);
 
          checkDraw();
-
          checkResult();
          checkEndGame();
       }
