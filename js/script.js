@@ -1,6 +1,8 @@
 // choose your token?
-
-
+var test = {
+   item: 'this',
+   thing: 'that'
+}
 var card = '';
 var turn = 1;
 var player = 'player 1';
@@ -26,6 +28,10 @@ $('#timer').hide();
 //////////////////////////////////////////////////////
 ///////// SELECTION
 //////////////////////////////////////////////////////
+
+
+// $('#gameHolder').offsetTop('20px');
+
 
 // FIRST STAGE choose whoe to play
 $('#selection button').on('click', function() {
@@ -195,8 +201,8 @@ function resetTheGame() {
          turn = 1;
          winnerGoesFirst = 10;
       } else {
-        turn = 0
-        winnerGoesFirst = 9;
+         turn = 0
+         winnerGoesFirst = 9;
          $('#sub').html('Player &nbsp<span>2</span>&nbsp goes first');
       }
       $('p1, .p2').removeClass('chosen');
